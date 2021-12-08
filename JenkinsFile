@@ -1,31 +1,8 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing'
-            }
-        }
-        stage('Release') {
-            steps {
-                echo 'Releasing'
-            }
-        }
+node {
+    stage('SCM Checkout'){
+        git 'https://github.com/daniel4nnah/CRUD_easy.git'
+    }
+    stage('Compile-Package'){
+        sh 'mvn package'
     }
 }
