@@ -6,9 +6,14 @@ import java.util.List;
 
 import com.example.demo.models.Usuario;
 import com.example.demo.services.UserService;
+import com.example.demo.tests.UserTest;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,17 +35,18 @@ public class UserController {
         return UserService.saludo(usuarioId);
     }
 
-    @GetMapping("/actualizarUsuario/{usuarioId}")
+    @PatchMapping("/actualizarUsuario/{usuarioId}")
     public Usuario updateUsuario(Long usuarioId, Usuario usuario){
         return UserService.updateUsuario(usuarioId, usuario);
     }
 
-    @GetMapping("/agregarUsuario")
-    public Usuario addUsuario(Usuario usuario){
+    @PostMapping("/agregarUsuario")
+    public Usuario addUsuario(@RequestBody Usuario usuario){
         return UserService.addUser(usuario);
+    //return UserTest.mostrarUsuario();
     }
 
-    @GetMapping("/eliminarUsuario/{usuarioId}")
+    @DeleteMapping("/eliminarUsuario/{usuarioId}")
     public Usuario eliminarUsuario(Long usuarioId){
         return UserService.deteleBook(usuarioId);
     }

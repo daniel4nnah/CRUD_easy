@@ -1,10 +1,13 @@
 package com.example.demo.services;
 
+import com.example.demo.tests.UserTest;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.example.demo.models.Usuario;
+import com.example.demo.tests.UserTest;
 
 public class UserService {
 
@@ -30,12 +33,21 @@ public class UserService {
     }
 
     public static String saludo(Long usuarioId){
-        if (l_usuarios.get(usuarioId).getIdioma() == "Es"){
+        Usuario u = l_usuarios.get(0);
+        String la = u.getIdioma();
+
+        if (la.equals("Es")){
+            System.out.println("USUARIO" + l_usuarios.get(usuarioId));
             return "Hola usuario";
-        } if (l_usuarios.get(usuarioId).getIdioma() == "En"){
+        } if (la.equals("En")){
+            System.out.println("USUARIO" + l_usuarios.get(usuarioId));
             return "Hello user";
-        } else {
+        } if (la.equals("Du")) {
+            System.out.println("USUARIO" + l_usuarios.get(usuarioId));
             return "Hallo Benutzer";
+        }
+        else {
+            return "No se encontraron";
         }
     }
 
@@ -49,7 +61,9 @@ public class UserService {
         index += 1; 
         usuario.setId(index); 
         l_usuarios.put(index, usuario); //Se agrega a la lista de libros
+        UserTest.mostrarUsuario();
         return usuario;
+        
     }
 
     public static Usuario deteleBook(Long usuarioId){
